@@ -40,8 +40,8 @@ const PeriodDay = (props) => {
           color: style.current.selectedText.color,
         };
         defaultStyle.containerStyle = {
-            backgroundColor: '#8E7046',
-        }
+          backgroundColor: '#8E7046',
+        };
       }
       if (marking.startingDay) {
         defaultStyle.startingDay = {
@@ -155,12 +155,16 @@ const PeriodDay = (props) => {
   };
 
   const _onPress = useCallback(() => {
+    if (state === 'disabled') {
+      return;
+    }
+
     onPress?.(dateData);
-  }, [onPress]);
+  }, [onPress, state]);
 
   const _onLongPress = useCallback(() => {
     onLongPress?.(dateData);
-  }, [onLongPress]);
+  }, [onLongPress, marking]);
 
   const Component = marking ? TouchableWithoutFeedback : TouchableOpacity;
 
